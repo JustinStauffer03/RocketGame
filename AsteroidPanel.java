@@ -110,7 +110,7 @@ public class AsteroidPanel extends JPanel {
                     score = score + (int)ScoreIncrease;
                     //This section is for increasing speed of meteors as they are shot along with increasing score as the game gets more challenging, the asteroids are worth more
                     probability = probability + 0.00025;
-                    ScoreIncrease = ScoreIncrease * 1.15;
+                    ScoreIncrease = ScoreIncrease * 1.05;
                     asteroidsToRemove.add(asteroid);
                 }
             }
