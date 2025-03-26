@@ -12,7 +12,9 @@ public class AsteroidPanel extends JPanel {
     private Timer t;
     ArrayList<Asteroid> roids;
     AsteroidPanel here;
-    private int score;
+    private int score = 0;
+
+    private double ScoreIncrease = 10.0;
    private int count = 0;
 
    private double probability = 0.003;
@@ -105,8 +107,10 @@ public class AsteroidPanel extends JPanel {
                 Rectangle asteroidBounds = new Rectangle(asteroid.getX() , asteroid.getY(), asteroid.getWidth(), asteroid.getHeight());
                 if (laserBounds.intersects(asteroidBounds)) {
                     lasersToRemove.add(laser);
-                    //This section is for increasing speed of meteors as they are shot
+                    score = score + (int)ScoreIncrease;
+                    //This section is for increasing speed of meteors as they are shot along with increasing score as the game gets more challenging, the asteroids are worth more
                     probability = probability + 0.00025;
+                    ScoreIncrease = ScoreIncrease * 1.15;
                     asteroidsToRemove.add(asteroid);
                 }
             }
@@ -120,7 +124,7 @@ public class AsteroidPanel extends JPanel {
             Rectangle asteroidBounds = new Rectangle(asteroid.getX(), asteroid.getY(), asteroid.getWidth()-10, asteroid.getHeight()-28);
             if (rocketBounds.intersects(asteroidBounds)) {
                 t.stop();
-                JOptionPane.showMessageDialog(this, "Game Over!", "Collision!", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Game Over! Score: " + score, "Collision!", JOptionPane.WARNING_MESSAGE);
                 System.exit(0);
                 break;
             }
